@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var database = Database()
     var body: some View {
         VStack {
             
@@ -36,6 +37,10 @@ struct ContentView: View {
                 .offset(x:-20)
         }
         .padding()
+        .onAppear() {
+            self.database.getData()
+        }
+
     }
 }
 
@@ -44,3 +49,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
