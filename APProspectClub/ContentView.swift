@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var database = Database()
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -16,6 +17,10 @@ struct ContentView: View {
             Text("Hello, world")
         }
         .padding()
+        .onAppear() {
+            self.database.getData()
+        }
+
     }
 }
 
@@ -24,3 +29,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
