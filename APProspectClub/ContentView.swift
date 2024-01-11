@@ -24,9 +24,6 @@ struct ContentView: View {
                         .foregroundColor(.white)
                         .font(.system(size: 70, weight: .heavy, design: .default))
                         .offset(y: -150)
-                    
-                    Rectangle()
-                        .frame(width: 100, height: 100)
                         
                     
                     Image("PHS")
