@@ -34,6 +34,12 @@ struct ContentView: View {
                         .shadow(radius: 4)
                         .offset(y: -180)
                         .offset(x: -20)
+                    List{
+                        ForEach(database.list) {data in
+                            Text(data.ClubName)
+                        }
+                        
+                    }.background(Color.clear)
                 }
                 .padding()
                 .onAppear() {
