@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C09344862B4DB18800D542D6 /* Non-Competitive Clubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09344852B4DB18800D542D6 /* Non-Competitive Clubs.swift */; };
+		C09344882B4DB1A000D542D6 /* Competitive Clubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09344872B4DB1A000D542D6 /* Competitive Clubs.swift */; };
 		F4A8605F2B2B6605006B1A6B /* ProspectClubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A8605E2B2B6605006B1A6B /* ProspectClubView.swift */; };
 		F4A860612B2B6605006B1A6B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A860602B2B6605006B1A6B /* ContentView.swift */; };
 		F4A860632B2B6606006B1A6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4A860622B2B6606006B1A6B /* Assets.xcassets */; };
@@ -64,6 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C09344852B4DB18800D542D6 /* Non-Competitive Clubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Non-Competitive Clubs.swift"; sourceTree = "<group>"; };
+		C09344872B4DB1A000D542D6 /* Competitive Clubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Competitive Clubs.swift"; sourceTree = "<group>"; };
 		F4A8605B2B2B6605006B1A6B /* APProspectClub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APProspectClub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4A8605E2B2B6605006B1A6B /* ProspectClubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProspectClubView.swift; sourceTree = "<group>"; };
 		F4A860602B2B6605006B1A6B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -158,6 +162,8 @@
 				F4A860602B2B6605006B1A6B /* ContentView.swift */,
 				F4A860882B2B67A5006B1A6B /* Database.swift */,
 				F4A860C32B2B6C67006B1A6B /* Clubs.swift */,
+				C09344852B4DB18800D542D6 /* Non-Competitive Clubs.swift */,
+				C09344872B4DB1A000D542D6 /* Competitive Clubs.swift */,
 				F4A8608A2B2B68CC006B1A6B /* GoogleService-Info.plist */,
 				F4A860622B2B6606006B1A6B /* Assets.xcassets */,
 				F4A860642B2B6606006B1A6B /* Preview Content */,
@@ -353,9 +359,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C09344882B4DB1A000D542D6 /* Competitive Clubs.swift in Sources */,
 				F4A860612B2B6605006B1A6B /* ContentView.swift in Sources */,
 				F4A8605F2B2B6605006B1A6B /* ProspectClubView.swift in Sources */,
 				F4A860892B2B67A5006B1A6B /* Database.swift in Sources */,
+				C09344862B4DB18800D542D6 /* Non-Competitive Clubs.swift in Sources */,
 				F4A860C42B2B6C67006B1A6B /* Clubs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
