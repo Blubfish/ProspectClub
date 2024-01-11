@@ -33,7 +33,7 @@ struct ContentView: View {
                         .resizable()
                         .frame(width: 150, height: 150)
                         .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.white, lineWidth: 2)) // Optional: add a border
+                        .overlay(Circle().stroke(Color.white, lineWidth: 2))
                         .shadow(radius: 4)
                         .offset(y: -180)
                         .offset(x: -20)
