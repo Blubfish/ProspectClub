@@ -11,7 +11,13 @@ struct ContentView: View {
     @ObservedObject var database = Database()
     @State private var searchTerm = ""
     
+    var filteredClub : [Clubs]{
+        guard !searchTerm.isEmpty else {return database.list}
+        return database.list.filter {$0.ClubName.localizedCaseInsensitiveContains(searchTerm)}
+    }
+    
     var body: some View {
+        
         NavigationStack {
             
             ZStack {
@@ -35,7 +41,7 @@ struct ContentView: View {
                         .offset(y: -180)
                         .offset(x: -20)
                     List{
-                        ForEach(database.list) {data in
+                        ForEach(filteredClub) {data in
                             Text(data.ClubName)
                         }
                         
