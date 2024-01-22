@@ -12,6 +12,8 @@ struct ContentView: View {
     @ObservedObject var database = Database()
     @State private var searchTerm = ""
     
+
+    
     var filteredClub : [Clubs]{
         guard !searchTerm.isEmpty else {return database.list}
         return database.list.filter {$0.ClubName.localizedCaseInsensitiveContains(searchTerm)}
@@ -53,11 +55,14 @@ struct ContentView: View {
                                 } label: {
                                     
                                 }
-                            }
+                            }.listRowBackground(Color.blue)
+                                .foregroundColor(Color.white)
+                                .font(.system(size: 20, weight: .heavy, design: .default))
+                            
 
                         }
                         
-                    }.background(Color.clear)
+                    }
                 }
                 .padding()
                 .onAppear() {
