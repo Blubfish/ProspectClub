@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     @ObservedObject var database = Database()
     @State private var searchTerm = ""
     
@@ -42,7 +43,18 @@ struct ContentView: View {
                         .offset(x: -20)
                     List{
                         ForEach(filteredClub) {data in
-                            Text(data.ClubName)
+                            HStack{
+                                Text(data.ClubName)
+                                Spacer()
+                                NavigationLink{
+                                    Text(data.ClubName)
+                                    Text(data.ClubDescription)
+                                    Text(data.Sponser)
+                                } label: {
+                                    
+                                }
+                            }
+
                         }
                         
                     }.background(Color.clear)
