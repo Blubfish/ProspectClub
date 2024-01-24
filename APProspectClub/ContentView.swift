@@ -18,54 +18,45 @@ struct ContentView: View {
     }
     
     var body: some View {
-        
         NavigationStack {
-            
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [.blue, .cyan]),
                                startPoint: .leading, endPoint: .trailing)
                 .edgesIgnoringSafeArea(.all)
-                
-                VStack {
-                    Text("PHS Clubs")
-                        .foregroundColor(.white)
-                        .font(.system(size: 70, weight: .heavy, design: .default))
-                        .offset(y: -150)
+                ScrollView{
+                    VStack {
+                        Spacer()
+                        Text("PHS Clubs")
+                            .foregroundColor(.white)
+                            .font(.system(size: 70, weight: .heavy, design: .default))
                         
-                    
-                    Image("PHS")
-                        .resizable()
-                        .frame(width: 150, height: 150)
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.white, lineWidth: 2))
-                        .shadow(radius: 4)
-                        .offset(y: -180)
-                        .offset(x: -20)
-                    List{
-                        ForEach(filteredClub) {data in
-                            HStack{
-                                Text(data.ClubName)
-                                Spacer()
+                        
+                        Image("PHS")
+                            .resizable()
+                            .frame(width: 200, height: 200)
+                            .clipShape(Circle())
+                            .overlay(Circle().stroke(Color.white, lineWidth: 2))
+                            .shadow(radius: 6)
+                        Spacer(minLength: 75)
+                            ForEach(filteredClub) { data in
                                 NavigationLink{
                                     Text(data.ClubName)
                                     Text(data.ClubDescription)
                                     Text(data.Sponser)
                                 } label: {
-                                    
+                                    Text(data.ClubName)
                                 }
-                            }
-
                         }
-                        
-                    }.background(Color.clear)
-                }
-                .padding()
-                .onAppear() {
-                    self.database.getData()
+                    }
+                    .padding()
+                    .onAppear() {
+                        self.database.getData()
+                    }
+                    .searchable(text: $searchTerm, prompt: "Search Clubs")
+                    .foregroundColor(.black)
                 }
             }
-        } .searchable(text: $searchTerm, prompt: "Search Clubs")
-            .foregroundColor(.black)
+        }
             
     }
     
