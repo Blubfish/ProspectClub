@@ -42,12 +42,31 @@ struct ContentView: View {
                         Spacer(minLength: 75)
                             ForEach(filteredClub) { data in
                                 NavigationLink{
-                                    Text(data.ClubName)
-                                    Text(data.ClubDescription)
-                                    Text(data.Sponser)
-                                } label: {
+                                    ZStack {
+                                        LinearGradient(gradient: Gradient(colors: [.blue, .cyan]),
+                                                       startPoint: .leading, endPoint: .trailing)
+                                        .edgesIgnoringSafeArea(.all)
+                                        VStack{
+                                            Text(data.ClubName)
+                                                .font(.system(size: 40, weight: .bold))
+                                                .foregroundColor(Color.white)
+                                                .multilineTextAlignment(.center)
+                                                .padding()
+                                            Text(data.ClubDescription)
+                                                .font(.system(size: 20, weight: .bold))
+                                                .foregroundColor(Color.white)
+                                                .multilineTextAlignment(.center)
+                                            Text(data.Sponser)
+                                                .font(.system(size: 20, weight: .bold))
+                                                .foregroundColor(Color.white)
+                                                .padding()
+                                        }
+                                    }
+                                }
+                                label: {
                                     Text(data.ClubName)
                                 }
+                                
                             }.listRowBackground(Color.blue)
                                 .foregroundColor(Color.white)
                                 .font(.system(size: 20, weight: .heavy, design: .default))
@@ -72,3 +91,4 @@ struct ContentView: View {
             ContentView()
         }
     }
+
