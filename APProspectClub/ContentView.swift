@@ -8,15 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    
     @ObservedObject var database = Database()
     @State private var searchTerm = ""
     
-
-    
-    var filteredClub : [Clubs]{
+    var filteredClub: [Clubs] {
         guard !searchTerm.isEmpty else {return database.list}
-        return database.list.filter {$0.ClubName.localizedCaseInsensitiveContains(searchTerm)}
+        return database.list.filter {$0.Name.localizedCaseInsensitiveContains(searchTerm)}
     }
     
     var body: some View {
@@ -31,8 +28,6 @@ struct ContentView: View {
                         Text("PHS Clubs")
                             .foregroundColor(.white)
                             .font(.system(size: 70, weight: .heavy, design: .default))
-                        
-                        
                         Image("PHS")
                             .resizable()
                             .frame(width: 200, height: 200)
@@ -40,38 +35,68 @@ struct ContentView: View {
                             .overlay(Circle().stroke(Color.white, lineWidth: 2))
                             .shadow(radius: 6)
                         Spacer(minLength: 75)
-                            ForEach(filteredClub) { data in
+                        NavigationLink(destination: {
+                            Non_Competitive_Clubs()
+                        }, label: {
+                            Text("Non Competitive Clubs")
+                                .foregroundColor(.white)
+                                .padding(.vertical)
+                                .padding(.horizontal, 50)
+                                .background(.blue)
+                                .cornerRadius(10)
+                        })
+                        NavigationLink(destination: {
+                            Competitive_Clubs()
+                        }, label: {
+                            Text("Competitive Clubs")
+                                .foregroundColor(.white)
+                                .padding(.vertical)
+                                .padding(.horizontal, 50)
+                                .background(.blue)
+                                .cornerRadius(10)
+                        })
+                        ForEach(self.filteredClub) { data in
                                 NavigationLink{
                                     ZStack {
                                         LinearGradient(gradient: Gradient(colors: [.blue, .cyan]),
                                                        startPoint: .leading, endPoint: .trailing)
                                         .edgesIgnoringSafeArea(.all)
                                         VStack{
-                                            Text(data.ClubName)
+                                            Text(data.Name)
                                                 .font(.system(size: 40, weight: .bold))
                                                 .foregroundColor(Color.white)
                                                 .multilineTextAlignment(.center)
                                                 .padding()
-                                            Text(data.ClubDescription)
+                                            Text(data.Description)
                                                 .font(.system(size: 20, weight: .bold))
                                                 .foregroundColor(Color.white)
                                                 .multilineTextAlignment(.center)
-                                            Text(data.Sponser)
+                                            Text(data.Sponsor)
                                                 .font(.system(size: 20, weight: .bold))
                                                 .foregroundColor(Color.white)
                                                 .padding()
+                                            if data.Competitve == true{
+                                                Text("Competitive")
+                                                    .font(.system(size: 20, weight: .bold))
+                                                    .foregroundColor(Color.white)
+                                                    .padding()
+                                            }else{
+                                                Text("Non-Competitive")
+                                                    .font(.system(size: 20, weight: .bold))
+                                                    .foregroundColor(Color.white)
+                                                    .padding()
+                                            }
+                                            
                                         }
                                     }
                                 }
                                 label: {
-                                    Text(data.ClubName)
+                                    Text(data.Name)
                                 }
-                                
-                            }.listRowBackground(Color.blue)
+                            }
+                                .listRowBackground(Color.blue)
                                 .foregroundColor(Color.white)
                                 .font(.system(size: 20, weight: .heavy, design: .default))
-                            
-
                         }
                     }
                     .padding()
@@ -79,16 +104,9 @@ struct ContentView: View {
                         self.database.getData()
                     }
                     .searchable(text: $searchTerm, prompt: "Search Clubs")
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                 }
-            }
         }
-            
+        .accentColor(.white)
     }
-    
-    struct ContentView_Previews: PreviewProvider {
-        static var previews: some View {
-            ContentView()
-        }
-    }
-
+}
