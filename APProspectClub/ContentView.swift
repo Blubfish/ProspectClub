@@ -8,75 +8,105 @@
 import SwiftUI
 
 struct ContentView: View {
-    
     @ObservedObject var database = Database()
     @State private var searchTerm = ""
     
-
-    
-    var filteredClub : [Clubs]{
+    var filteredClub: [Clubs] {
         guard !searchTerm.isEmpty else {return database.list}
-        return database.list.filter {$0.ClubName.localizedCaseInsensitiveContains(searchTerm)}
+        return database.list.filter {$0.Name.localizedCaseInsensitiveContains(searchTerm)}
     }
     
     var body: some View {
-        
         NavigationStack {
-            
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [.blue, .cyan]),
                                startPoint: .leading, endPoint: .trailing)
                 .edgesIgnoringSafeArea(.all)
-                
-                VStack {
-                    Text("PHS Clubs")
-                        .foregroundColor(.white)
-                        .font(.system(size: 70, weight: .heavy, design: .default))
-                        .offset(y: -150)
-                        
-                    
-                    Image("PHS")
-                        .resizable()
-                        .frame(width: 150, height: 150)
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.white, lineWidth: 2))
-                        .shadow(radius: 4)
-                        .offset(y: -180)
-                        .offset(x: -20)
-                    List{
-                        ForEach(filteredClub) {data in
-                            HStack{
-                                Text(data.ClubName)
-                                Spacer()
+                ScrollView{
+                    VStack {
+                        Spacer()
+                        Text("PHS Clubs")
+                            .foregroundColor(.white)
+                            .font(.system(size: 70, weight: .heavy, design: .default))
+                        Image("PHS")
+                            .resizable()
+                            .frame(width: 200, height: 200)
+                            .clipShape(Circle())
+                            .overlay(Circle().stroke(Color.white, lineWidth: 2))
+                            .shadow(radius: 6)
+                        Spacer(minLength: 75)
+                        NavigationLink(destination: {
+                            Non_Competitive_Clubs()
+                        }, label: {
+                            Text("Non Competitive Clubs")
+                                .foregroundColor(.white)
+                                .padding(.vertical)
+                                .padding(.horizontal, 50)
+                                .background(.blue)
+                                .cornerRadius(10)
+                        })
+                        NavigationLink(destination: {
+                            Competitive_Clubs()
+                        }, label: {
+                            Text("Competitive Clubs")
+                                .foregroundColor(.white)
+                                .padding(.vertical)
+                                .padding(.horizontal, 50)
+                                .background(.blue)
+                                .cornerRadius(10)
+                        })
+                        ForEach(self.filteredClub) { data in
                                 NavigationLink{
-                                    Text(data.ClubName)
-                                    Text(data.ClubDescription)
-                                    Text(data.Sponser)
-                                } label: {
-                                    
+                                    ZStack {
+                                        LinearGradient(gradient: Gradient(colors: [.blue, .cyan]),
+                                                       startPoint: .leading, endPoint: .trailing)
+                                        .edgesIgnoringSafeArea(.all)
+                                        VStack{
+                                            Text(data.Name)
+                                                .font(.system(size: 40, weight: .bold))
+                                                .foregroundColor(Color.white)
+                                                .multilineTextAlignment(.center)
+                                                .padding()
+                                            Text(data.Description)
+                                                .font(.system(size: 20, weight: .bold))
+                                                .foregroundColor(Color.white)
+                                                .multilineTextAlignment(.center)
+                                            Text(data.Sponsor)
+                                                .font(.system(size: 20, weight: .bold))
+                                                .foregroundColor(Color.white)
+                                                .padding()
+                                            if data.Competitve == true{
+                                                Text("Competitive")
+                                                    .font(.system(size: 20, weight: .bold))
+                                                    .foregroundColor(Color.white)
+                                                    .padding()
+                                            }else{
+                                                Text("Non-Competitive")
+                                                    .font(.system(size: 20, weight: .bold))
+                                                    .foregroundColor(Color.white)
+                                                    .padding()
+                                            }
+                                            
+                                        }
+                                    }
                                 }
-                            }.listRowBackground(Color.blue)
+                                label: {
+                                    Text(data.Name)
+                                }
+                            }
+                                .listRowBackground(Color.blue)
                                 .foregroundColor(Color.white)
                                 .font(.system(size: 20, weight: .heavy, design: .default))
-                            
-
                         }
-                        
                     }
+                    .padding()
+                    .onAppear() {
+                        self.database.getData()
+                    }
+                    .searchable(text: $searchTerm, prompt: "Search Clubs")
+                    .foregroundColor(.white)
                 }
-                .padding()
-                .onAppear() {
-                    self.database.getData()
-                }
-            }
-        } .searchable(text: $searchTerm, prompt: "Search Clubs")
-            .foregroundColor(.black)
-            
-    }
-    
-    struct ContentView_Previews: PreviewProvider {
-        static var previews: some View {
-            ContentView()
         }
+        .accentColor(.white)
     }
 }

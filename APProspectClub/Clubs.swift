@@ -1,6 +1,7 @@
 struct Clubs: Identifiable {
     var id = String()
-    var ClubName = String()
-    var Sponser = String()
-    var ClubDescription = String()
+    var Name = String()
+    var Sponsor = String()
+    var Description = String()
+    var Competitve = Bool()
 }
