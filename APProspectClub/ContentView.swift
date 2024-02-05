@@ -62,6 +62,7 @@ struct ContentView: View {
                                 .multilineTextAlignment(.center)
                         })
                         ForEach(self.filteredClub) { data in
+                                Spacer(minLength: 25)
                                 NavigationLink{
                                     ZStack {
                                         LinearGradient(gradient: Gradient(colors: [.blue, .cyan]),
