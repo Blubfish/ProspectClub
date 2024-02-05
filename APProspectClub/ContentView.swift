@@ -41,9 +41,12 @@ struct ContentView: View {
                             Text("Non Competitive Clubs")
                                 .foregroundColor(.white)
                                 .padding(.vertical)
-                                .padding(.horizontal, 50)
+                                .padding(.horizontal, 10)
                                 .background(.blue)
                                 .cornerRadius(10)
+                                .font(.system(size: 25, weight: .bold))
+                                .foregroundColor(Color.white)
+                                .multilineTextAlignment(.center)
                         })
                         NavigationLink(destination: {
                             Competitive_Clubs()
@@ -51,9 +54,12 @@ struct ContentView: View {
                             Text("Competitive Clubs")
                                 .foregroundColor(.white)
                                 .padding(.vertical)
-                                .padding(.horizontal, 50)
+                                .padding(.horizontal, 10)
                                 .background(.blue)
                                 .cornerRadius(10)
+                                .font(.system(size: 25, weight: .bold))
+                                .foregroundColor(Color.white)
+                                .multilineTextAlignment(.center)
                         })
                         ForEach(self.filteredClub) { data in
                                 NavigationLink{
