@@ -24,6 +24,7 @@ struct Competitive_Clubs: View {
                             Spacer()
                             ForEach(database.list) { data in
                                 if data.Competitve == true{
+                                    Spacer(minLength: 25)
                                     NavigationLink{
                                         ZStack {
                                             LinearGradient(gradient: Gradient(colors: [.blue, .cyan]),
