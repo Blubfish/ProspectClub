@@ -103,7 +103,7 @@ struct ContentView: View {
                             }
                                 .listRowBackground(Color.blue)
                                 .foregroundColor(Color.white)
-                                .font(.system(size: 20, weight: .heavy, design: .default))
+                                .font(.system(size: 20, weight: .medium, design: .default))
                         }
                     }
                     .padding()

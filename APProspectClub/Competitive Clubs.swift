@@ -21,6 +21,10 @@ struct Competitive_Clubs: View {
                                 .foregroundColor(.white)
                                 .font(.system(size: 30, weight: .heavy, design: .default))
                             
+                            Image("comp")
+                                               .resizable()
+                                               .aspectRatio(contentMode: .fit)
+                                               .frame(width: 150, height: 150)
                             Spacer()
                             ForEach(database.list) { data in
                                 if data.Competitve == true{
@@ -54,7 +58,7 @@ struct Competitive_Clubs: View {
                                 }
                                     .listRowBackground(Color.blue)
                                     .foregroundColor(Color.white)
-                                    .font(.system(size: 20, weight: .heavy, design: .default))
+                                    .font(.system(size: 20, weight: .medium, design: .default))
                             }
                         }
                         .padding()
