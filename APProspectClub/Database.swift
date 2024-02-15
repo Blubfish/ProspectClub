@@ -21,7 +21,9 @@ class Database: ObservableObject {
                 print(sponser)
                 let competitive = data["Competitive"] as? Bool ?? true
                 print(competitive)
-                return Clubs(id: id ,Name: name, Sponsor: sponser, Description: description, Competitve: competitive)
+                let email = data["Email"] as? String ?? ""
+                print(email)
+                return Clubs(id: id ,Name: name, Sponsor: sponser, Description: description, Competitve: competitive, Email: email)
             }
         }
     }

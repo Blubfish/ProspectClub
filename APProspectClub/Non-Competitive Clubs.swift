@@ -48,8 +48,14 @@ struct Non_Competitive_Clubs: View {
                                                 .multilineTextAlignment(.center)
                                             Text(data.Sponsor)
                                                 .font(.system(size: 20, weight: .medium))
+                                            Text("Sponsor: " + data.Sponsor)
+                                                .font(.system(size: 20, weight: .bold))
                                                 .foregroundColor(Color.white)
                                                 .padding()
+                                            Text("Email: " + data.Email)
+                                                .font(.system(size: 20, weight: .bold))
+                                                .foregroundColor(Color.white)
+                                            
                                         }
                                     }
                                 }
