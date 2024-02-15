@@ -7,6 +7,18 @@
 
 import SwiftUI
 
+struct GrowingButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding()
+            .background(.blue)
+            .foregroundStyle(.white)
+            .clipShape(Capsule())
+            .scaleEffect(configuration.isPressed ? 1.2 : 1)
+            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+    }
+}
+
 struct ContentView: View {
     @ObservedObject var database = Database()
     @State private var searchTerm = ""
@@ -27,7 +39,7 @@ struct ContentView: View {
                         Spacer()
                         Text("PHS CLUBS")
                             .foregroundColor(.white)
-                            .font(.system(size: 60, weight: .heavy, design: .default))
+                            .font(.system(size: 50, weight: .heavy, design: .default))
                         Image("PHS")
                             .resizable()
                             .frame(width: 200, height: 200)
@@ -43,11 +55,11 @@ struct ContentView: View {
                                 .frame(width: 220, height: 20)
                                 .padding(.vertical)
                                 .padding(.horizontal, 10)
-                                .background(.black)
+                                .background(.blue)
                                 .cornerRadius(10)
                                 .font(.system(size: 20, weight: .bold))
-                                .foregroundColor(Color.white)
                                 .multilineTextAlignment(.center)
+                                .buttonStyle(GrowingButton())
                         })
                         NavigationLink(destination: {
                             Competitive_Clubs()
@@ -57,11 +69,12 @@ struct ContentView: View {
                                 .frame(width: 220, height: 20)
                                 .padding(.vertical)
                                 .padding(.horizontal, 10)
-                                .background(.black)
+                                .background(.blue)
                                 .cornerRadius(10)
                                 .font(.system(size: 20, weight: .bold))
-                                .foregroundColor(Color.white)
+                                .foregroundColor(Color.teal)
                                 .multilineTextAlignment(.center)
+                                .buttonStyle(GrowingButton())
                         })
                         ForEach(self.filteredClub) { data in
                                 Spacer(minLength: 25)
