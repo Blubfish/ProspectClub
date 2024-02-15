@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct GrowingButton: ButtonStyle {
+    
+    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()
@@ -22,6 +24,7 @@ struct GrowingButton: ButtonStyle {
 struct ContentView: View {
     @ObservedObject var database = Database()
     @State private var searchTerm = ""
+   
     
     var filteredClub: [Clubs] {
         guard !searchTerm.isEmpty else {return database.list}
@@ -40,14 +43,14 @@ struct ContentView: View {
                         Text("PHS CLUBS")
                             .foregroundColor(.white)
                             .font(.system(size: 50, weight: .heavy, design: .default))
-                        Image("PHS")
+                        Image("home")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 200, height: 200)
-                            .clipShape(Circle())
-                            .overlay(Circle().stroke(Color.white, lineWidth: 2))
+                            .frame(width: 205, height: 205)
+                            .multilineTextAlignment(.center)
+                            .offset(x:-13)
                             .shadow(radius: 6)
-                            .clipped()
+                           
                         Spacer(minLength: 75)
                         NavigationLink(destination: {
                             Non_Competitive_Clubs()
