@@ -42,10 +42,12 @@ struct ContentView: View {
                             .font(.system(size: 50, weight: .heavy, design: .default))
                         Image("PHS")
                             .resizable()
+                            .aspectRatio(contentMode: .fill)
                             .frame(width: 200, height: 200)
                             .clipShape(Circle())
                             .overlay(Circle().stroke(Color.white, lineWidth: 2))
                             .shadow(radius: 6)
+                            .clipped()
                         Spacer(minLength: 75)
                         NavigationLink(destination: {
                             Non_Competitive_Clubs()
