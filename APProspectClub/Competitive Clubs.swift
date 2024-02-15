@@ -45,8 +45,6 @@ struct Competitive_Clubs: View {
                                                     .foregroundColor(Color.white)
                                                     .frame(width: 350)
                                                     .multilineTextAlignment(.center)
-                                                Text(data.Sponsor)
-                                                    .font(.system(size: 20, weight: .light))
                                                 Text("Sponsor: " + data.Sponsor)
                                                     .font(.system(size: 20, weight: .bold))
                                                     .foregroundColor(Color.white)
