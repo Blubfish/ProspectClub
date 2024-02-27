@@ -14,15 +14,11 @@ class Database: ObservableObject {
                 let data = d.data()
                 let id = d.documentID
                 let description = data["Description"] as? String ?? ""
-                print(description)
                 let name = data["Name"] as? String ?? ""
                 print(name)
                 let sponser = data["Sponsor"] as? String ?? ""
-                print(sponser)
                 let competitive = data["Competitive"] as? Bool ?? true
-                print(competitive)
                 let email = data["Email"] as? String ?? ""
-                print(email)
                 return Clubs(id: id ,Name: name, Sponsor: sponser, Description: description, Competitve: competitive, Email: email)
             }
         }

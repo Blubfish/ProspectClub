@@ -49,9 +49,15 @@ struct Competitive_Clubs: View {
                                                     .font(.system(size: 20, weight: .bold))
                                                     .foregroundColor(Color.white)
                                                     .padding()
-                                                Text("Email: " + data.Email)
-                                                    .font(.system(size: 20, weight: .bold))
-                                                    .foregroundColor(Color.white)
+                                                Button {
+                                                    if let url = URL(string: "mailto:\(data.Email)") {
+                                                        UIApplication.shared.open(url)
+                                                    }
+                                                } label: {
+                                                    Text("Email: " + data.Email)
+                                                        .font(.system(size: 20, weight: .light))
+                                                        .foregroundColor(Color.white)
+                                                }
                                             }
                                         }
                                     }

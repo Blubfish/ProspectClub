@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct GrowingButton: ButtonStyle {
-    
-    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()
@@ -24,7 +22,6 @@ struct GrowingButton: ButtonStyle {
 struct ContentView: View {
     @ObservedObject var database = Database()
     @State private var searchTerm = ""
-   
     
     var filteredClub: [Clubs] {
         guard !searchTerm.isEmpty else {return database.list}
@@ -50,7 +47,7 @@ struct ContentView: View {
                             .multilineTextAlignment(.center)
                             .offset(x:-13)
                             .shadow(radius: 6)
-                           
+                        
                         Spacer(minLength: 75)
                         NavigationLink(destination: {
                             Non_Competitive_Clubs()
@@ -84,61 +81,68 @@ struct ContentView: View {
                         
                         
                         ForEach(self.filteredClub) { data in
-                                Spacer(minLength: 25)
-                                NavigationLink{
-                                    ZStack {
-                                        LinearGradient(gradient: Gradient(colors: [.blue, .cyan]),
-                                                       startPoint: .leading, endPoint: .trailing)
-                                        .edgesIgnoringSafeArea(.all)
-                                        VStack{
-                                            Text(data.Name)
-                                                .font(.system(size: 40, weight: .bold))
-                                                .foregroundColor(Color.white)
-                                                .multilineTextAlignment(.center)
-                                                .padding()
-                                            Text(data.Description)
-                                                .font(.system(size: 20, weight: .light))
-                                                .foregroundColor(Color.white)
-                                                .frame(width: 350)
-                                                .multilineTextAlignment(.center)
-                                            Text("Sponsor: " + data.Sponsor)
-                                                .font(.system(size: 20, weight: .light))
-                                                .foregroundColor(Color.white)
-                                                .padding()
+                            Spacer(minLength: 25)
+                            NavigationLink{
+                                ZStack {
+                                    LinearGradient(gradient: Gradient(colors: [.blue, .cyan]),
+                                                   startPoint: .leading, endPoint: .trailing)
+                                    .edgesIgnoringSafeArea(.all)
+                                    VStack{
+                                        Text(data.Name)
+                                            .font(.system(size: 40, weight: .bold))
+                                            .foregroundColor(Color.white)
+                                            .multilineTextAlignment(.center)
+                                            .padding()
+                                        Text(data.Description)
+                                            .font(.system(size: 20, weight: .light))
+                                            .foregroundColor(Color.white)
+                                            .frame(width: 350)
+                                            .multilineTextAlignment(.center)
+                                        Text("Sponsor: " + data.Sponsor)
+                                            .font(.system(size: 20, weight: .light))
+                                            .foregroundColor(Color.white)
+                                            .padding()
+                                        Button {
+                                            if let url = URL(string: "mailto:\(data.Email)") {
+                                                UIApplication.shared.open(url)
+                                            }
+                                        } label: {
                                             Text("Email: " + data.Email)
                                                 .font(.system(size: 20, weight: .light))
                                                 .foregroundColor(Color.white)
-                                            if data.Competitve == true{
-                                                Text("Competitive")
-                                                    .font(.system(size: 20, weight: .medium))
-                                                    .foregroundColor(Color.white)
-                                                    .padding()
-                                            }else{
-                                                Text("Non-Competitive")
-                                                    .font(.system(size: 20, weight: .bold))
-                                                    .foregroundColor(Color.white)
-                                                    .padding()
-                                            }
-                                            
                                         }
+                                        if data.Competitve == true{
+                                            Text("Competitive")
+                                                .font(.system(size: 20, weight: .medium))
+                                                .foregroundColor(Color.white)
+                                                .padding()
+                                        }else{
+                                            Text("Non-Competitive")
+                                                .font(.system(size: 20, weight: .bold))
+                                                .foregroundColor(Color.white)
+                                                .padding()
+                                        }
+                                        
                                     }
                                 }
-                                label: {
-                                    Text(data.Name)
-                                }
                             }
-                                .listRowBackground(Color.blue)
-                                .foregroundColor(Color.white)
-                                .font(.system(size: 20, weight: .medium, design: .default))
+                        label: {
+                            Text(data.Name)
                         }
+                        }
+                        .listRowBackground(Color.blue)
+                        .foregroundColor(Color.white)
+                        .font(.system(size: 20, weight: .medium, design: .default))
                     }
-                    .padding()
-                    .onAppear() {
-                        self.database.getData()
-                    }
-                    .searchable(text: $searchTerm, prompt: "Search Clubs")
-                    .foregroundColor(.white)
                 }
+                .padding()
+                .onAppear() {
+                    self.database.getData()
+                }
+                .searchable(text: $searchTerm, prompt: "Search Clubs")
+                .foregroundColor(.white)
+                
+            }
         }
         .accentColor(.white)
     }
